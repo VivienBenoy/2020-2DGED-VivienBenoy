@@ -74,6 +74,23 @@ class SpriteData {
    
     }
   });
+
+  static BACKGROUND_DATA = [
+    {
+      id: "background",
+      spriteSheet: document.getElementById("ballCrusher_background"),
+      sourcePosition: new Vector2(0, 0),
+      sourceDimensions: new Vector2(430, 336),
+      translation: new Vector2(0, 0),
+      rotation: 0,
+      scale: new Vector2(1, 1),
+      origin: new Vector2(0, 0),
+      alpha: 1,
+      actorType: ActorType.Background,
+      layerDepth: 1,
+      scrollSpeedMultiplier: 0.2
+    }
+  ];
   
   
   
