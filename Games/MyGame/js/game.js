@@ -169,7 +169,7 @@ function StartGame(gameTime) {
 
 function LoadSprites() {
   LoadPlayerSprite();
-  
+  LoadPlatformSprites();
   LoadBackground();
 
 
@@ -226,6 +226,49 @@ function LoadPlayerSprite() {
   //step 8 - add to the object manager so it is drawn (if we set StatusType.Drawn) and updated (if we set StatusType.Updated)
   objectManager.Add(playerSprite); //add player sprite
 }
+function LoadPlatformSprites() {
+  //access the data
+  var platformData = SpriteData.PLATFORM_DATA;
+
+  //create tha artist
+  let spriteArtist = new SpriteArtist(
+    ctx,
+    platformData.spriteSheet,
+    platformData.alpha,
+    platformData.sourcePosition,
+    platformData.sourceDimensions
+  );
+
+  //create the transform
+  let transform = new Transform2D(
+    platformData.translationArray[0],
+    platformData.rotation,
+    platformData.scale,
+    platformData.origin,
+    platformData.sourceDimensions
+  );
+
+  //create a single archetypal platform sprite
+  let archetypeSprite = new Sprite(
+    platformData.id,
+    platformData.actorType,
+    StatusType.Updated | StatusType.Drawn,
+    transform,
+    spriteArtist
+  );
+
+  //now clone the archetype
+  let clone = null;
+  for (let i = 0; i < platformData.translationArray.length; i++) {
+    clone = archetypeSprite.Clone();
+    //set the position of the clone
+    clone.Transform2D.Translation = platformData.translationArray[i];
+    //dont forget - if its collidable then it needs a circle or rect collision primitive
+    clone.collisionPrimitive = new RectCollisionPrimitive(clone.Transform2D, 0);
+    //add to the manager
+    objectManager.Add(clone);
+  }
+}
 function LoadBackground() {
   var backgroundData = SpriteData.BACKGROUND_DATA;
 
@@ -259,6 +302,8 @@ function LoadBackground() {
       )
     );
   }
+
+  
 
 
 
