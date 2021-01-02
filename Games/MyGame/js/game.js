@@ -16,7 +16,6 @@ var gameTime = null;
 
 //managers
 var objectManager = null;
-var soundManager = null;
 var keyboardManager = null;
 
 //debug
@@ -60,7 +59,7 @@ function Animate(now) {
  */
 function LoadManagers() {
   objectManager = new ObjectManager(ctx, StatusType.Drawn);
-  //keyboardManager = new KeyboardManager();
+  keyboardManager = new KeyboardManager();
   // soundManager = new SoundManager(cueArray);
 }
 
