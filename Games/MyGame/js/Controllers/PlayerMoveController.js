@@ -148,9 +148,7 @@ class PlayerMoveController{
           parent.Body.IsOnGround = false;
           parent.Body.SetVelocityY(-this.jumpVelocity * gameTime.ElapsedTimeInMs);
     
-          //add your code here...
-          //set take to "player_jump"
-          soundManager.Play("gunshot"); //obviously we would source and load an appropriate "jump" sound here
+        
         }
       }
     
@@ -177,8 +175,7 @@ class PlayerMoveController{
               //add to the score
               score += 10;
     
-              //play a sound
-              soundManager.Play("coin_pickup");
+           
     
               //remove the pickup
               objectManager.Remove(sprite);

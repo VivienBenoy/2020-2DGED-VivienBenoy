@@ -3,8 +3,8 @@ class SpriteData {
   //#region Sprite Data
   static RUNNER_START_POSITION = new Vector2(500, 650);
   static RUNNER_MOVE_KEYS = [Keys.A, Keys.D, Keys.Space, Keys.Enter];
-  static RUNNER_RUN_VELOCITY = 0.5;
-  static RUNNER_JUMP_VELOCITY = 0.6;
+  static RUNNER_RUN_VELOCITY = 0.3;
+  static RUNNER_JUMP_VELOCITY = 0.8;
   
   static RUNNER_ANIMATION_DATA = Object.freeze({
     id: "runner_animation_data",
@@ -55,20 +55,21 @@ class SpriteData {
 
   static COLLECTIBLES_ANIMATION_DATA = Object.freeze({
     id: "collectibles_animation_data",
-    spriteSheet: document.getElementById("ballCrusher_lives"),
+    spriteSheet: document.getElementById("ballCrusher_coins"),
     alpha: 1,
     actorType: ActorType.Pickup,
     takes: {  
-      "lives" :  {
+      "coins" :  {
         fps: 5,
         maxLoopCount: -1, 
         startCellIndex: 0,
         endCellIndex: 4,
-        boundingBoxDimensions: new Vector2(46, 50), 
+        boundingBoxDimensions: new Vector2(25, 27), 
         cellData: [
-          new Rect(25, 45, 268, 229),
-          new Rect(317, 45, 267, 233),
-          new Rect(610, 45, 271, 236)
+          new Rect(1, 53, 25, 25),
+          new Rect(39, 53, 23, 27),
+          new Rect(80, 53, 15, 27),
+          new Rect(119, 53, 7, 28),
 
         ]
       },
@@ -136,7 +137,28 @@ class SpriteData {
 
       new Vector2(976,672),
       new Vector2(976,624),
-      new Vector2(976,576)
+      new Vector2(976,576),
+
+      //starting point
+      new Vector2(75,624),
+      new Vector2(123,624),
+      new Vector2(171,624),
+      new Vector2(219,624),
+
+      new Vector2(250,480),
+      new Vector2(298,480),
+      new Vector2(346,480),
+      new Vector2(394,480),
+      new Vector2(442,480),
+      new Vector2(490,480),
+      new Vector2(538,480)
+
+
+
+
+
+
+
  
     ]
   });

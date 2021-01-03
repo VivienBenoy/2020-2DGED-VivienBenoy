@@ -230,11 +230,11 @@ function LoadPlayerSprite() {
 function LoadPickupSprites() {
   //to add lots of pickups we can also just create a local array of positions for the pickups
   let pickTranslationArray = [
-    new Vector2(450, 525)
+    new Vector2(920, 700)
   ];
 
   //set the take name for the animation - we could change to "gold_glint" easily
-  var takeName = "lives";
+  var takeName = "coins";
 
   //loop through the translation array
   for (var translation of pickTranslationArray) {
@@ -264,7 +264,7 @@ function LoadPickupSprites() {
 
     //create the sprite and give it type "Pickup"
     let pickupSprite = new Sprite(
-      "health",
+      "gold",
       ActorType.Pickup,
       StatusType.Updated | StatusType.Drawn,
       transform,
@@ -277,7 +277,7 @@ function LoadPickupSprites() {
       pickupSprite.Transform2D,
       15
     );
-
+     
     //add to the object manager
     objectManager.Add(pickupSprite);
   }
