@@ -169,6 +169,7 @@ function StartGame(gameTime) {
 
 function LoadSprites() {
   LoadPlayerSprite();
+  LoadPickupSprites();
   LoadPlatformSprites();
   LoadBackground();
 
@@ -225,6 +226,61 @@ function LoadPlayerSprite() {
 
   //step 8 - add to the object manager so it is drawn (if we set StatusType.Drawn) and updated (if we set StatusType.Updated)
   objectManager.Add(playerSprite); //add player sprite
+}
+function LoadPickupSprites() {
+  //to add lots of pickups we can also just create a local array of positions for the pickups
+  let pickTranslationArray = [
+    new Vector2(450, 525)
+  ];
+
+  //set the take name for the animation - we could change to "gold_glint" easily
+  var takeName = "lives";
+
+  //loop through the translation array
+  for (var translation of pickTranslationArray) {
+    //create an animated artist
+    let spriteArtist = new AnimatedSpriteArtist(
+      ctx,
+      SpriteData.COLLECTIBLES_ANIMATION_DATA
+    );
+
+    //set the take
+    spriteArtist.SetTake(takeName);
+
+    //retrieve the dimensions of a single frame of the animation for the bounding box
+    var frameDimensions = spriteArtist.GetSingleFrameDimensions(takeName);
+
+    //set the origin so that the collision surface is in the center of the sprite
+    var origin = Vector2.DivideScalar(frameDimensions, 2);
+
+    //create a transform to position the pickup
+    let transform = new Transform2D(
+      translation,
+      0,
+      Vector2.One,
+      origin,
+      frameDimensions
+    );
+
+    //create the sprite and give it type "Pickup"
+    let pickupSprite = new Sprite(
+      "health",
+      ActorType.Pickup,
+      StatusType.Updated | StatusType.Drawn,
+      transform,
+      spriteArtist,
+      1
+    );
+
+    // add the collision surface to test for collisions against
+    pickupSprite.collisionPrimitive = new CircleCollisionPrimitive(
+      pickupSprite.Transform2D,
+      15
+    );
+
+    //add to the object manager
+    objectManager.Add(pickupSprite);
+  }
 }
 function LoadPlatformSprites() {
   //access the data

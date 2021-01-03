@@ -160,6 +160,8 @@ class AnimatedSpriteArtist extends Artist {
         //restore whatever context settings were used before save() was called above
         this.Context.restore();
 
+        
+
     }
 
     /**
@@ -169,7 +171,7 @@ class AnimatedSpriteArtist extends Artist {
      */
     Advance(parent) {
         //if not at end frame then advance 1
-        if (this.currentCellIndex < this.endCellIndex)
+        if (this.currentCellIndex < this.endCellIndex-1)
             this.currentCellIndex++;
         else {
             //increment the number of times that the animation has run
@@ -181,6 +183,7 @@ class AnimatedSpriteArtist extends Artist {
             //if max loop count has been reached then remove this sprite
             if (this.currentLoopCount == this.maxLoopCount)
                 NotificationCenter.Notify(new Notification(NotificationType.Sprite, NotificationAction.RemoveFirst, [parent]));
+
         }
     }
 

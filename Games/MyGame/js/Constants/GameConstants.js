@@ -1,9 +1,9 @@
 class SpriteData {
 
   //#region Sprite Data
-  static RUNNER_START_POSITION = new Vector2(50, 650);
+  static RUNNER_START_POSITION = new Vector2(500, 650);
   static RUNNER_MOVE_KEYS = [Keys.A, Keys.D, Keys.Space, Keys.Enter];
-  static RUNNER_RUN_VELOCITY = 0.1;
+  static RUNNER_RUN_VELOCITY = 0.5;
   static RUNNER_JUMP_VELOCITY = 0.6;
   
   static RUNNER_ANIMATION_DATA = Object.freeze({
@@ -19,6 +19,8 @@ class SpriteData {
         endCellIndex: 8,
         boundingBoxDimensions: new Vector2(57, 57), //notice I choose the largest of all the widths taken from the cellData array below
         cellData: [
+
+          
           new Rect(433, 123, 45, 56),
           new Rect(370, 123, 43, 57),
           new Rect(303, 123, 57, 56),
@@ -31,11 +33,11 @@ class SpriteData {
         ]
       },
       "run_left" : {     
-        fps: 12,
-        maxLoopCount: -1, //-1 = always, 0 = run once, N = run N times
+        fps: 20,
+        maxLoopCount: -1, 
         startCellIndex: 0,
         endCellIndex: 8,
-        boundingBoxDimensions: new Vector2(61, 59), //notice I choose the largest of all the widths taken from the cellData array below
+        boundingBoxDimensions: new Vector2(61, 59), 
         cellData: [
           new Rect(420, 62, 47, 57),
           new Rect(365, 62, 46, 59),
@@ -59,7 +61,7 @@ class SpriteData {
     takes: {  
       "lives" :  {
         fps: 5,
-        maxLoopCount: -1, //-1 = always, 0 = run once, N = run N times
+        maxLoopCount: -1, 
         startCellIndex: 0,
         endCellIndex: 4,
         boundingBoxDimensions: new Vector2(46, 50), 
@@ -103,7 +105,6 @@ class SpriteData {
     alpha: 1,
     actorType: ActorType.Platform,
     translationArray: [
-      //added spaces here so that you can easily see which grouping is which on screen
       new Vector2(0, 720),
       new Vector2(48, 720),
       new Vector2(96, 720),
@@ -126,7 +127,16 @@ class SpriteData {
       new Vector2(912, 720),
       new Vector2(960, 720),
       new Vector2(1008, 720),
-      new Vector2(1056, 720)
+      new Vector2(1056, 720),
+
+
+      new Vector2(0,672),
+      new Vector2(0,624),
+      new Vector2(0,576),
+
+      new Vector2(976,672),
+      new Vector2(976,624),
+      new Vector2(976,576)
  
     ]
   });
