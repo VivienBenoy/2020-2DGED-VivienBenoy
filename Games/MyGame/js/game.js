@@ -72,7 +72,7 @@ function Update(gameTime) {
 
   //Check for menu, win/lose, sound events
   HandleInput(gameTime);
-
+  
   //update scores on the UI
   UpdateGameState(gameTime);
 }
@@ -126,7 +126,7 @@ function Initialize() {
   LoadDebug(true);
 
   //load sprites
-  
+  LoadSprites();
 }
 
 function UpdateGameState(gameTime) {
@@ -149,8 +149,9 @@ function UpdateGameState(gameTime) {
 function HandleInput(gameTime) {
   //is the game starting
   if (keyboardManager.IsKeyDown(Keys.Enter)) {
-    StartGame(gameTime);
+    StartGame(gameTime);  
   }
+ 
 
   //add more code to check for input (e.g. Press "O" for Objective or "M" for menu)
 }
@@ -166,7 +167,7 @@ function StartGame(gameTime) {
 
   //Hide "Press Enter"
   document.getElementById("menu_opening").style.display = "none";
-  LoadSprites();
+  
   //unpause game
   objectManager.StatusType = StatusType.Drawn | StatusType.Updated;
   soundManager.Play("background");
