@@ -60,7 +60,7 @@ function Animate(now) {
 function LoadManagers() {
   objectManager = new ObjectManager(ctx, StatusType.Drawn);
   keyboardManager = new KeyboardManager();
-  // soundManager = new SoundManager(cueArray);
+  soundManager = new SoundManager(cueArray);
 }
 
 //#endregion
@@ -112,6 +112,13 @@ function LoadDebug(bDebugEnabled) {
 //stores object manager which holds all sprites
 var lives = 5;
 var score = 0;
+
+
+const cueArray = [
+  new AudioCue("background", 0.6, 1, true, 0),
+  new AudioCue("coin",1,1,false,1)
+  //add more cues here but make sure you load in the HTML!
+];
 //#endregion
 
 function Initialize() {
@@ -119,7 +126,7 @@ function Initialize() {
   LoadDebug(true);
 
   //load sprites
-  LoadSprites();
+  
 }
 
 function UpdateGameState(gameTime) {
@@ -159,9 +166,10 @@ function StartGame(gameTime) {
 
   //Hide "Press Enter"
   document.getElementById("menu_opening").style.display = "none";
-
+  LoadSprites();
   //unpause game
   objectManager.StatusType = StatusType.Drawn | StatusType.Updated;
+  soundManager.Play("background");
 
 
 
@@ -172,6 +180,7 @@ function LoadSprites() {
   LoadPickupSprites();
   LoadPlatformSprites();
   LoadBackground();
+  //LoadEnemySprite();
 
 
 }
@@ -230,7 +239,10 @@ function LoadPlayerSprite() {
 function LoadPickupSprites() {
   //to add lots of pickups we can also just create a local array of positions for the pickups
   let pickTranslationArray = [
-    new Vector2(920, 700)
+    new Vector2(920, 700),
+    new Vector2(538,450),
+    new Vector2(974,280),
+
   ];
 
   //set the take name for the animation - we could change to "gold_glint" easily
@@ -282,6 +294,52 @@ function LoadPickupSprites() {
     objectManager.Add(pickupSprite);
   }
 }
+function LoadEnemySprite()
+  {
+     //step 1 - create AnimatedSpriteArtist
+  var takeName = "roll_right";
+  var artist = new AnimatedSpriteArtist(ctx, SpriteData.ENEMY_ANIMATION_DATA);
+
+  //step 2 - set initial take
+  artist.SetTake(takeName);
+
+  //step 3 - create transform and use bounding box from initial take (this is why we make AnimatedSpriteArtist before Transform2D)
+  let transform = new Transform2D(
+    SpriteData.ENEMY_START_POSITION,
+    0,
+    Vector2.One,
+    Vector2.Zero,
+    artist.GetSingleFrameDimensions("roll_right"),
+    0
+  );
+
+  //step 4 - create the CollidableSprite which adds Body which allows us to test for collision and add gravity
+  let enemySprite = new CollidableSprite(
+    "enemy",
+    ActorType.Enemy,
+    StatusType.Updated | StatusType.Drawn,
+    transform,
+    artist,
+    1
+  );
+
+  //step 5 - set performance characteristics of the body attached to the moveable sprite
+  enemySprite.Body.MaximumSpeed = 6;
+  enemySprite.Body.Friction = FrictionType.Normal;
+  enemySprite.Body.Gravity = GravityType.Normal;
+
+  //step 6 - add collision surface
+  enemySprite.collisionPrimitive = new CircleCollisionPrimitive(
+    enemySprite.Transform2D,
+    20
+  );
+
+ 
+
+  //step 8 - add to the object manager so it is drawn (if we set StatusType.Drawn) and updated (if we set StatusType.Updated)
+  objectManager.Add(enemySprite); //add player sprite
+  }
+
 function LoadPlatformSprites() {
   //access the data
   var platformData = SpriteData.PLATFORM_DATA;
@@ -358,6 +416,7 @@ function LoadBackground() {
       )
     );
   }
+  
 
   
 

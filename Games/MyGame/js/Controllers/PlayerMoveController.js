@@ -175,7 +175,7 @@ class PlayerMoveController{
               //add to the score
               score += 10;
     
-           
+              soundManager.Play("coin");
     
               //remove the pickup
               objectManager.Remove(sprite);

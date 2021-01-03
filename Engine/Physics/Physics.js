@@ -585,7 +585,7 @@ class DebugDrawer {
 
     Draw(gameTime) {
         if ((this.statusType & StatusType.Drawn) != 0) {
-            this.DrawCollisionPrimitives();
+           // this.DrawCollisionPrimitives();
         }
     }
 

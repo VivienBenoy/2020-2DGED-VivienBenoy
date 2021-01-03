@@ -151,16 +151,72 @@ class SpriteData {
       new Vector2(394,480),
       new Vector2(442,480),
       new Vector2(490,480),
-      new Vector2(538,480)
+      new Vector2(538,480),
 
 
-
-
-
-
+      new Vector2(590,400),
+      new Vector2(638,400),
+      new Vector2(686,400),
+      new Vector2(734,400),
+      new Vector2(782,400),
+      new Vector2(830,400),
+      new Vector2(878,400),
+      new Vector2(926,400),
+      new Vector2(974,400),
+      new Vector2(974,352),
+      new Vector2(974,304),
 
  
     ]
+  });
+
+
+  static ENEMY_ANIMATION_DATA = Object.freeze({
+    id: "enemy_animation_data",
+    spriteSheet: document.getElementById("ballCrusher_ball"),
+    actorType: ActorType.Enemy,
+    alpha: 1,
+    takes: {  
+      "roll_right" :  {       
+        fps: 12,
+        maxLoopCount: -1, //-1 = always, 0 = run once, N = run N times
+        startCellIndex: 0,
+        endCellIndex: 5,
+        boundingBoxDimensions: new Vector2(29, 21), //notice I choose the largest of all the widths taken from the cellData array below
+        cellData: [
+
+          
+          new Rect(5, 5, 29, 20),
+          new Rect(44, 5, 28, 21),
+          new Rect(82, 5, 29, 21),
+          new Rect(121, 5, 30, 21),
+          new Rect(160, 5, 30, 20),
+          new Rect(198, 5, 30, 20)
+
+
+
+
+          
+        
+        ]
+      },
+      "roll_left" : {     
+        fps: 20,
+        maxLoopCount: -1, 
+        startCellIndex: 0,
+        endCellIndex: 5,
+        boundingBoxDimensions: new Vector2(30, 21), 
+        cellData: [
+          new Rect(8, 61, 28, 20),
+          new Rect(47, 61, 29, 20),
+          new Rect(85, 61, 29, 21),
+          new Rect(124, 61, 30, 22),
+          new Rect(162, 61, 30, 20),
+          new Rect(201, 61, 30, 21)
+      
+        ]
+      }
+    }
   });
   
   
