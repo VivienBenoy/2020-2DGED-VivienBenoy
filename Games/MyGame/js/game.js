@@ -322,8 +322,6 @@ function LoadPickupSprites() {
     new Vector2(400,130),
     new Vector2(40,160)
 
-
-
   ];
 
   //set the take name for the animation - we could change to "gold_glint" easily
