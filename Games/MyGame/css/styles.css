@@ -72,3 +72,14 @@ body {
   top:20px;
 }
 
+#Winner
+{
+  right:50%;
+  top:50%;
+}
+
+#Loser{
+  color: red;
+  right:300px;
+  top:300px;
+}

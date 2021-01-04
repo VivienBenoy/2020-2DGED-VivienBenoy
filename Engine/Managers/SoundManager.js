@@ -93,7 +93,7 @@ class SoundManager {
       if (audioObject) {
         if (!audioObject.paused) {
           //currently playing
-          cue.pause();
+          audioObject.pause();
         }
       }
     } else throw "Error: No audio object was found for cue [" + name + "]";

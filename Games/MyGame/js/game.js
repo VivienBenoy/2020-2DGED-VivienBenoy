@@ -53,11 +53,16 @@ function Animate(now) {
   //draw all sprite
   Draw(gameTime);
 
+  ;
   //request the next frame to repeat the update/draw cycle
-  if(!keyboardManager.IsKeyDown(Keys.P))
-  {
-    window.requestAnimationFrame(Animate);
-  }
+  //pause game if p is pressed
+ 
+    window.requestAnimationFrame(Animate);   
+    
+  
+  
+  
+  
   
   
 }
@@ -118,14 +123,18 @@ function LoadDebug(bDebugEnabled) {
 /********************************* Game-Specific Variables & Functions (Change in Your Game) *********************************/
 //#region Game Specific Variables [CHANGE FOR YOUR GAME]
 //stores object manager which holds all sprites
-var lives = 3;
+var lives = 1;
 var score = 0;
-
+var bpause=false;
 
 const cueArray = [
   new AudioCue("background", 0.6, 1, true, 0),
   new AudioCue("coin",1,1,false,1),
-  new AudioCue("death",1,0.5,false,1)
+  new AudioCue("death",1,0.5,false,1),
+  new AudioCue("Winner",1,1,false,1),
+  new AudioCue("Loser",1,0.8,false,0)
+
+
 ];
 //#endregion
 
@@ -149,14 +158,44 @@ function UpdateGameState(gameTime) {
     livesElement.style.display = "block";
     livesElement.innerHTML = "Lives = "+lives;
   }
+  if(keyboardManager.IsKeyDown(Keys.P))
+  {
+    objectManager.StatusType=StatusType.Off;
+    bpause=true; 
+  }
+  // if(bpause)
+  // {
+  //   keyboardManager.IsKeyDown(Keys.R)
+  //   {
+  //     objectManager.StatusType = StatusType.Drawn | StatusType.Updated;
+  //     bpause=false;
+  //   }
+  // }
   endGame();
 
 }
 
 function endGame(){
-  if(score==30)
+  if(score===30 )
   {
-    ClearCanvas(Color.White);
+    objectManager.StatusType=StatusType.Off;
+    document.getElementById("Winner").style.display="block";
+    document.getElementById("ui_lives").style.display="none";
+    document.getElementById("ui_score").style.display="none";
+    soundManager.Play("Winner");
+    soundManager.Pause("background");
+
+    document.getElementById("Winner").style.display="block";
+  }
+  if(lives===0 )
+  {
+    document.getElementById("ui_lives").style.display="none";
+    document.getElementById("ui_score").style.display="none";
+    objectManager.StatusType=StatusType.Off;
+    document.getElementById("Loser").style.display="block";
+    soundManager.Play("Loser");
+    soundManager.Pause("background");
+    document.getElementById("Loser").style.display="block";
   }
 
 }
@@ -171,6 +210,7 @@ function HandleInput(gameTime) {
   //game starts if enter key is pressed
   if (keyboardManager.IsKeyDown(Keys.Enter)) {
     StartGame(gameTime);  
+    
   }
  
 
@@ -191,6 +231,7 @@ function StartGame(gameTime) {
   //unpause game
   objectManager.StatusType = StatusType.Drawn | StatusType.Updated;
   soundManager.Play("background");
+
 
 
 
