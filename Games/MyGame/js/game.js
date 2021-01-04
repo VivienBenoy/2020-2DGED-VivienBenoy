@@ -17,6 +17,7 @@ var gameTime = null;
 //managers
 var objectManager = null;
 var keyboardManager = null;
+var soundManager=null;
 
 //debug
 var debugDrawer = null;
@@ -123,7 +124,7 @@ function LoadDebug(bDebugEnabled) {
 /********************************* Game-Specific Variables & Functions (Change in Your Game) *********************************/
 //#region Game Specific Variables [CHANGE FOR YOUR GAME]
 //stores object manager which holds all sprites
-var lives = 1;
+var lives = 3;
 var score = 0;
 var bpause=false;
 
