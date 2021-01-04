@@ -106,7 +106,7 @@ class PlayerMoveController{
       }
     
       /**
-       * Change the names of the takes in this method to suit the take names in your game
+       * 
        *
        * @param {*} gameTime
        * @param {*} parent
@@ -126,8 +126,8 @@ class PlayerMoveController{
       }
     
       /**
-       * Change the code in this method to play a particular sound when the player jumps
-       * and (optionally) change the animation
+       * 
+       * code to make player jump
        *
        * @param {*} gameTime
        * @param {*} parent
@@ -149,9 +149,9 @@ class PlayerMoveController{
       }
     
       /**
-       * Change the code in this method to play a particular sound when the player collects
-       * a pickup, update the score based on the pickup ID, and possibly play a celebration 
-       * animation if the pickup is the final level objective.
+       * code to handle collsion with coins and to increase score on pickup
+       * 
+       * 
        *
        * @param {*} gameTime
        * @param {*} parent
@@ -178,15 +178,10 @@ class PlayerMoveController{
       }
     
       /**
-       * Change the code in this method to play a particular sound when the player 
-       * collides with the enemy, or remove the enemy, or kill the player and change
-       * to game over screen (i.e. by setting object manager to StatusType.Drawn only to pause
-       * update and then by setting the "menu_winlose" <div> block to display=block with a message set in
-       * the innerHTML of that <div> block )
+       *Checks collision with enemy spikes and reduces number of lives
        *
-       * @param {*} gameTime
        * @param {*} parent
-       * @memberof PlayerController
+       * @memberof PlayerMoveController
        */
       HandleEnemyCollision(parent) {
         let sprites = objectManager.Find(ActorType.Enemy);

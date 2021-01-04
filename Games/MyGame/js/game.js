@@ -163,14 +163,20 @@ function UpdateGameState(gameTime) {
   if(keyboardManager.IsKeyDown(Keys.P))
   {
     objectManager.StatusType=StatusType.Off;
+    document.getElementById("menu_opening").style.display = "block";
     HandleInput(gameTime);
   }
 
   endGame();
 
 }
-
+/**
+ *checks if the game has ended
+ *
+ */
 function endGame(){
+
+  //Winner 
   if(score===70 )
   {
     objectManager.StatusType=StatusType.Off;
@@ -181,6 +187,7 @@ function endGame(){
     soundManager.Pause("background");
 
     document.getElementById("Winner").style.display="block";
+    //Code for restarting the game
     if(keyboardManager.IsKeyDown(Keys.R))
     {
       var gameTime = new GameTime();
@@ -189,6 +196,7 @@ function endGame(){
       StartGame(gameTime);
     }
   }
+  //Loser
   if(lives===0 )
   {
     document.getElementById("ui_lives").style.display="none";
@@ -240,7 +248,6 @@ function StartGame(gameTime) {
   //Hide "Press Enter"
   document.getElementById("menu_opening").style.display = "none";
   document.getElementById("assets").style.display = "block";
-  //unpause game
   objectManager.StatusType = StatusType.Drawn | StatusType.Updated;
   soundManager.Play("background");
 
@@ -248,15 +255,16 @@ function StartGame(gameTime) {
 
 
 }
-
+/**
+ *Loads all assets and draws them on canvas
+ *
+ */
 function LoadSprites() {
   LoadPlayerSprite();
   LoadPickupSprites();
   LoadPlatformSprites();
   LoadBackground();
   LoadSpikeSprites();
-  //LoadEnemySprite();
-
 
 }
 

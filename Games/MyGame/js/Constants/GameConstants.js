@@ -213,7 +213,7 @@ class SpriteData {
       new Vector2(0,540),
       new Vector2(397,445),
       new Vector2(452,165),
-      new Vector2(405,165),
+      new Vector2(405,165)
 
 
  
