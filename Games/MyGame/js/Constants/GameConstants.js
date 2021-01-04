@@ -66,10 +66,11 @@ class SpriteData {
         endCellIndex: 4,
         boundingBoxDimensions: new Vector2(25, 27), 
         cellData: [
-          new Rect(1, 53, 25, 25),
+          new Rect(1, 53, 35, 35),
           new Rect(39, 53, 23, 27),
           new Rect(80, 53, 15, 27),
           new Rect(119, 53, 7, 28),
+        
 
         ]
       },
@@ -146,6 +147,7 @@ class SpriteData {
       new Vector2(171,624),
       new Vector2(219,624),
 
+      //2nd level
       new Vector2(250,480),
       new Vector2(298,480),
       new Vector2(346,480),
@@ -154,7 +156,7 @@ class SpriteData {
       new Vector2(490,480),
       new Vector2(538,480),
 
-
+      //3rd level
       new Vector2(590,400),
       new Vector2(638,400),
       new Vector2(686,400),
@@ -166,6 +168,32 @@ class SpriteData {
       new Vector2(974,400),
       new Vector2(974,352),
       new Vector2(974,304),
+
+      //4th level
+     
+      new Vector2(832,250),
+      new Vector2(784,250),
+      new Vector2(784,202),
+      new Vector2(736,202),
+      new Vector2(736,154),
+      new Vector2(688,154),
+      new Vector2(640,154),
+      new Vector2(592,154),
+      new Vector2(544,154),
+      new Vector2(544,106),
+      new Vector2(496,106),
+      new Vector2(496,154),
+      new Vector2(496,202),
+      new Vector2(496,202),
+      new Vector2(448,202),
+      new Vector2(400,202),
+      new Vector2(352,202),
+      new Vector2(304,202),
+      new Vector2(256,202),
+      new Vector2(208,202),
+      new Vector2(160,202),
+      new Vector2(20,180),
+
 
  
     ]
@@ -181,61 +209,15 @@ class SpriteData {
     alpha: 1,
     actorType: ActorType.Enemy,
     translationArray: [
-      new Vector2(928, 360)
+      new Vector2(688, 360),
+      new Vector2(0,540),
+      new Vector2(397,445),
+      new Vector2(452,165),
+      new Vector2(405,165),
+
+
  
     ]
   });
 
-
-
-  static ENEMY_ANIMATION_DATA = Object.freeze({
-    id: "enemy_animation_data",
-    spriteSheet: document.getElementById("ballCrusher_ball"),
-    actorType: ActorType.Enemy,
-    alpha: 1,
-    takes: {  
-      "roll_right" :  {       
-        fps: 12,
-        maxLoopCount: -1, //-1 = always, 0 = run once, N = run N times
-        startCellIndex: 0,
-        endCellIndex: 5,
-        boundingBoxDimensions: new Vector2(29, 21), //notice I choose the largest of all the widths taken from the cellData array below
-        cellData: [
-
-          
-          new Rect(5, 5, 29, 20),
-          new Rect(44, 5, 28, 21),
-          new Rect(82, 5, 29, 21),
-          new Rect(121, 5, 30, 21),
-          new Rect(160, 5, 30, 20),
-          new Rect(198, 5, 30, 20)
-
-
-
-
-          
-        
-        ]
-      },
-      "roll_left" : {     
-        fps: 20,
-        maxLoopCount: -1, 
-        startCellIndex: 0,
-        endCellIndex: 5,
-        boundingBoxDimensions: new Vector2(30, 21), 
-        cellData: [
-          new Rect(8, 61, 28, 20),
-          new Rect(47, 61, 29, 20),
-          new Rect(85, 61, 29, 21),
-          new Rect(124, 61, 30, 22),
-          new Rect(162, 61, 30, 20),
-          new Rect(201, 61, 30, 21)
-      
-        ]
-      }
-    }
-  });
-  
-  
-  
   }

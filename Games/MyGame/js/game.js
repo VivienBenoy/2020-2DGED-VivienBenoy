@@ -176,7 +176,7 @@ function UpdateGameState(gameTime) {
 }
 
 function endGame(){
-  if(score===30 )
+  if(score===70 )
   {
     objectManager.StatusType=StatusType.Off;
     document.getElementById("Winner").style.display="block";
@@ -304,7 +304,13 @@ function LoadPickupSprites() {
   let pickTranslationArray = [
     new Vector2(920, 700),
     new Vector2(538,450),
-    new Vector2(974,280),
+    new Vector2(993,280),
+    new Vector2(100,600),
+    new Vector2(800,180),
+    new Vector2(400,130),
+    new Vector2(40,160)
+
+
 
   ];
 
