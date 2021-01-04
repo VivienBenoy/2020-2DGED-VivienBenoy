@@ -37,7 +37,10 @@ function Start() {
   Initialize();
 
   //start Update/Draw cycle i.e. start the game
-  window.requestAnimationFrame(Animate);
+  
+     window.requestAnimationFrame(Animate);
+  
+ 
 }
 
 function Animate(now) {
@@ -51,7 +54,12 @@ function Animate(now) {
   Draw(gameTime);
 
   //request the next frame to repeat the update/draw cycle
-  window.requestAnimationFrame(Animate);
+  if(!keyboardManager.IsKeyDown(Keys.P))
+  {
+    window.requestAnimationFrame(Animate);
+  }
+  
+  
 }
 
 /**
@@ -134,7 +142,21 @@ function UpdateGameState(gameTime) {
   var scoreElement = document.getElementById("ui_score");
   if (scoreElement) {
     scoreElement.style.display = "block";
-    scoreElement.innerHTML = score;
+    scoreElement.innerHTML = "Score = "+score;
+  }
+  var livesElement = document.getElementById("ui_lives");
+  if (scoreElement) {
+    livesElement.style.display = "block";
+    livesElement.innerHTML = "Lives = "+lives;
+  }
+  endGame();
+
+}
+
+function endGame(){
+  if(score==30)
+  {
+    ClearCanvas(Color.White);
   }
 
 }
@@ -165,7 +187,7 @@ function StartGame(gameTime) {
 
   //Hide "Press Enter"
   document.getElementById("menu_opening").style.display = "none";
-  
+  document.getElementById("assets").style.display = "block";
   //unpause game
   objectManager.StatusType = StatusType.Drawn | StatusType.Updated;
   soundManager.Play("background");
@@ -294,51 +316,7 @@ function LoadPickupSprites() {
     objectManager.Add(pickupSprite);
   }
 }
-function LoadEnemySprite()
-  {
-     //step 1 - create AnimatedSpriteArtist
-  var takeName = "roll_right";
-  var artist = new AnimatedSpriteArtist(ctx, SpriteData.ENEMY_ANIMATION_DATA);
 
-  //step 2 - set initial take
-  artist.SetTake(takeName);
-
-  //step 3 - create transform and use bounding box from initial take (this is why we make AnimatedSpriteArtist before Transform2D)
-  let transform = new Transform2D(
-    SpriteData.ENEMY_START_POSITION,
-    0,
-    Vector2.One,
-    Vector2.Zero,
-    artist.GetSingleFrameDimensions("roll_right"),
-    0
-  );
-
-  //step 4 - create the CollidableSprite which adds Body which allows us to test for collision and add gravity
-  let enemySprite = new CollidableSprite(
-    "enemy",
-    ActorType.Enemy,
-    StatusType.Updated | StatusType.Drawn,
-    transform,
-    artist,
-    1
-  );
-
-  //step 5 - set performance characteristics of the body attached to the moveable sprite
-  enemySprite.Body.MaximumSpeed = 6;
-  enemySprite.Body.Friction = FrictionType.Normal;
-  enemySprite.Body.Gravity = GravityType.Normal;
-
-  //step 6 - add collision surface
-  enemySprite.collisionPrimitive = new RectCollisionPrimitive(
-    enemySprite.Transform2D,
-    20
-  );
-
- 
-
-  //step 8 - add to the object manager so it is drawn (if we set StatusType.Drawn) and updated (if we set StatusType.Updated)
-  objectManager.Add(enemySprite); //add player sprite
-  }
 
 function LoadPlatformSprites() {
   //access the data
