@@ -132,7 +132,8 @@ const cueArray = [
   new AudioCue("coin",1,1,false,1),
   new AudioCue("death",1,0.5,false,1),
   new AudioCue("Winner",1,1,false,1),
-  new AudioCue("Loser",1,0.8,false,0)
+  new AudioCue("Loser",1,0.8,false,1),
+  new AudioCue ("Jump",1,1,false,1)
 
 
 ];
@@ -158,19 +159,13 @@ function UpdateGameState(gameTime) {
     livesElement.style.display = "block";
     livesElement.innerHTML = "Lives = "+lives;
   }
+  //Pause game
   if(keyboardManager.IsKeyDown(Keys.P))
   {
     objectManager.StatusType=StatusType.Off;
-    bpause=true; 
+    HandleInput(gameTime);
   }
-  // if(bpause)
-  // {
-  //   keyboardManager.IsKeyDown(Keys.R)
-  //   {
-  //     objectManager.StatusType = StatusType.Drawn | StatusType.Updated;
-  //     bpause=false;
-  //   }
-  // }
+
   endGame();
 
 }
@@ -186,6 +181,13 @@ function endGame(){
     soundManager.Pause("background");
 
     document.getElementById("Winner").style.display="block";
+    if(keyboardManager.IsKeyDown(Keys.R))
+    {
+      var gameTime = new GameTime();
+      lives=3;
+      score=0;
+      StartGame(gameTime);
+    }
   }
   if(lives===0 )
   {
@@ -196,6 +198,16 @@ function endGame(){
     soundManager.Play("Loser");
     soundManager.Pause("background");
     document.getElementById("Loser").style.display="block";
+
+    if(keyboardManager.IsKeyDown(Keys.R))
+    {
+      var gameTime = new GameTime();
+      lives=3;
+      score=0;
+      StartGame(gameTime);
+    }
+
+
   }
 
 }

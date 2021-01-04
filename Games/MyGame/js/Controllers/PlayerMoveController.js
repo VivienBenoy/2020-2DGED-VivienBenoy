@@ -143,7 +143,7 @@ class PlayerMoveController{
           parent.Body.IsJumping = true;
           parent.Body.IsOnGround = false;
           parent.Body.SetVelocityY(-this.jumpVelocity * gameTime.ElapsedTimeInMs);
-    
+          soundManager.Play("Jump");
         
         }
       }
