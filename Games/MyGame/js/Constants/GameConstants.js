@@ -2,7 +2,7 @@ class SpriteData {
 
   //#region Sprite Data
   static RUNNER_START_POSITION = new Vector2(500, 650);
-  static RUNNER_MOVE_KEYS = [Keys.A, Keys.D, Keys.Space, Keys.Enter];
+  static RUNNER_MOVE_KEYS = [Keys.A, Keys.D, Keys.Space, Keys.Enter,Keys.P];
   static RUNNER_RUN_VELOCITY = 0.3;
   static RUNNER_JUMP_VELOCITY = 0.8;
   
@@ -77,6 +77,7 @@ class SpriteData {
    
     }
   });
+  
 
   static BACKGROUND_DATA = [
     {
@@ -169,6 +170,22 @@ class SpriteData {
  
     ]
   });
+  static SPIKE_DATA = Object.freeze({
+    id: "spike",
+    spriteSheet: document.getElementById("ballCrusher_spike"),
+    sourcePosition: new Vector2(12, 5),
+    sourceDimensions: new Vector2(43, 38),
+    rotation: 0,
+    scale: new Vector2(1, 1),
+    origin: new Vector2(0, 0),
+    alpha: 1,
+    actorType: ActorType.Enemy,
+    translationArray: [
+      new Vector2(928, 360)
+ 
+    ]
+  });
+
 
 
   static ENEMY_ANIMATION_DATA = Object.freeze({

@@ -83,13 +83,7 @@ class PlayerMoveController{
           }
         }
       }
-    
-      //#endregion
-    
-     
-    
-      //#region Your Game Specific Methods - add code for more CD/CR or input handling
-    
+   
     
       /**
        * Add code in the method to listen for mouse input and do something in the game
@@ -107,7 +101,9 @@ class PlayerMoveController{
        * @param {*} parent
        * @memberof PlayerController
        */
-      HandleKeyboard(gameTime, parent) {}
+      HandleKeyboard(gameTime, parent) {
+      
+      }
     
       /**
        * Change the names of the takes in this method to suit the take names in your game
@@ -168,11 +164,8 @@ class PlayerMoveController{
           for (let i = 0; i < sprites.length; i++) {
             let sprite = sprites[i];
     
-            //we can use simple collision check here (i.e. Intersects) because dont need to think was it top, bottom, left, or right
             if (Collision.Intersects(parent, sprite)) {
-              //add your code here...
-    
-              //add to the score
+            
               score += 10;
     
               soundManager.Play("coin");
@@ -203,9 +196,19 @@ class PlayerMoveController{
             let sprite = sprites[i];
     
             if (Collision.Intersects(parent, sprite)) {
-              //add your code here...
+              lives-=1;
+
+              parent.Transform2D.SetTranslation(new Vector2(500,650));
+             
+              parent.collisionPrimitive = new RectCollisionPrimitive(
+              parent.Transform2D,
+              0
+            );
+              
+              soundManager.Play("death");
             }
           }
         }
+
       }
 }
